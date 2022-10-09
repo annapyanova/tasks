@@ -62,6 +62,6 @@ public class Task1 {
     }
     //Задание 10
     public static boolean abcmath(int a, int b, int c) { //метод проверки делимости числа a, прибавленного к себе b раз, на c
-        if ((Math.pow(2, b) * a) % 10 == 0) return true; else return false;
+        if ((Math.pow(2, b) * a) % c == 0) return true; else return false;
     }
 }
