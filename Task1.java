@@ -27,7 +27,8 @@ public class Task1 {
     }
     //Задание 4
     public static boolean profitableGamble(double prob, double prize, double pay) { //метод для проверки условия
-        if (prob*prize > pay) return true; else return false;
+        if (prob*prize > pay) return true; 
+        else return false;
     }
     //Задание 5
     public static String operation(int N, int a, int b) { //метод определения математической операции
