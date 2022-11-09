@@ -4,7 +4,7 @@ public class Task3 {
         int [] s_2 = {4, 4, 3, 1}; //массив2 для задания 6
         //Вывод результатов для каждого задания
         System.out.println(solutions(1, 0, 1)); //1
-        System.out.println(findZip("all zip zd")); //2
+        System.out.println(findZip("all zip zd kdzpperzip")); //2
         System.out.println(checkPerfect(496)); //3
         System.out.println(flipEndChars("Cat, dog and mouse.")); //4
         System.out.println(isValidHexCode("#CD5C5C")); //5
@@ -41,7 +41,7 @@ public class Task3 {
         }
         return (x);
     }
-    public static boolean checkPerfect(int a) { //проверка числа на совершенное (сумма цифр = числу)
+    public static boolean checkPerfect(int a) { //проверка числа на совершенное (сумма делителей = числу)
         int sum = 0;
         for (int i=1; i<a; i++) {
             if (a % i == 0) sum += i;

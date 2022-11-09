@@ -7,7 +7,7 @@ public class Task1 {
         System.out.println(animals(5, 2, 8)); //3
         System.out.println(profitableGamble(0.9, 3, 2)); //4
         System.out.println(operation(1, 12, 6)); //5
-        System.out.println(ctoa('m')); //6
+        System.out.println(ctoa('c')); //6
         System.out.println(addUpTo(10)); //7
         System.out.println(nextEdge(8, 10)); //8
         System.out.println(sumOfCubes(nine)); //9
