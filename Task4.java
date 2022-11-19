@@ -8,22 +8,22 @@ import java.util.StringJoiner;
 
 public class Task4 {
     public static void main(String[] args) {
-        double [] m1 = {13.25, 15, 30, 1.5};
-        essay(10, 7, "hello my name is Bessie and this is my essay");
-        System.out.println(Arrays.toString(split("((())())(()(()()))")));
-        System.out.println(toCamelCase("_hello_eda_bit"));
-        System.out.println(toSnakeCase("heLloEdabit"));
-        System.out.println(overTime(m1));
-        System.out.println(BMI("154 pounds", "2 meters"));
-        System.out.println(bugger(999));
-        System.out.println(toStarShorthand("abbccc"));
-        System.out.println(doesRhyme("Sam I am!", "Green eggs and ham."));
-        System.out.println(trouble(122345, 122345));
-        System.out.println(countUniqueBooks("AZYWABBCATTTA", 'A'));
+        double [] m1 = {13.25, 15, 30, 1.5}; //массив для 4 задания
+        essay(10, 7, "hello my name is Bessie and this is my essay"); //1
+        System.out.println(Arrays.toString(split("((())())(()(()()))"))); //2
+        System.out.println(toCamelCase("_hello_eda_bit")); //3
+        System.out.println(toSnakeCase("heLloEdabit")); //3
+        System.out.println(overTime(m1)); //4
+        System.out.println(BMI("154 pounds", "2 meters")); //5
+        System.out.println(bugger(999)); //6
+        System.out.println(toStarShorthand("abbccc")); //7
+        System.out.println(doesRhyme("Sam I am!", "Green eggs and ham.")); //8
+        System.out.println(trouble(122345, 122345)); //9
+        System.out.println(countUniqueBooks("AZYWABBCATTTA", 'A')); //10
     }
-    public static void essay(int n, int k, String a) {
-        String[] strings = a.split(" ");
-        StringJoiner str_cur = new StringJoiner(" ");
+    public static void essay(int n, int k, String a) { //текстовый процессор
+        String[] strings = a.split(" "); //массив подстрок
+        StringJoiner str_cur = new StringJoiner(" "); //текущая подстрока на строке
         for (String string : strings) {
             if (string.length() + str_cur.length() > k) {
                 System.out.println(str_cur);
@@ -35,7 +35,7 @@ public class Task4 {
             System.out.println(str_cur);
         }
     }
-    public static String[] split(String a) {
+    public static String[] split(String a) { //группировка скобок в кластер
         Queue<Character> hooks = new LinkedList<>();
         int k = 0;
         ArrayList<String> strings = new ArrayList<>();
@@ -54,7 +54,7 @@ public class Task4 {
         strings.add(a.substring(k));
         return strings.toArray(new String[]{});
     }
-    public static String toCamelCase(String a) {
+    public static String toCamelCase(String a) { //преобразование в CamelCase
         String new_str = "";
         if (a.charAt(0) != '_') new_str += a.charAt(0);
         for (int i=1; i<a.length(); i++) {
@@ -63,7 +63,7 @@ public class Task4 {
         } 
         return (new_str);
     }
-    public static String toSnakeCase(String a) {
+    public static String toSnakeCase(String a) { //преобразование в snake_case
         String new_str = "";
         for (int i=0; i<a.length(); i++) {
             if ((int)a.charAt(i) >= 65 && (int)a.charAt(i) <= 90) new_str += "_" + (char)((int)a.charAt(i) + 32);
@@ -71,7 +71,7 @@ public class Task4 {
         }
         return (new_str);
     }
-    public static String overTime(double [] a) {
+    public static String overTime(double [] a) { //вычисление оплаты за обычную и сверхурочную работу
         double sum = 0;
         if (a[0]>a[1]) return ("Error");
         if (a[0]<=17 && a[1]<=17) sum = (a[1]-a[0])*a[2];
@@ -79,7 +79,7 @@ public class Task4 {
         if (a[0]<=17 && a[1]>17) sum = (17-a[0])*a[2] + (a[1]-17)*a[2]*a[3];
         return ("$" + String.format("%.2f", sum));
     }
-    public static String BMI(String w, String h){
+    public static String BMI(String w, String h){ //вычисоение индекса массы тела
         String weight = "";
         String hight = "";
         double k = 1;
@@ -97,7 +97,7 @@ public class Task4 {
         if (bmi >= 18.5 && bmi < 25) return (String.format("%.1f", bmi) + " Normal weight");
         else return (String.format("%.1f", bmi) + " Overweight");
     }
-    public static int bugger(int a) {
+    public static int bugger(int a) { //кол-во умножений цифр числа, пока в результате не 1 цифра
         int n = 0;
         int m = a;
         while (String.valueOf(m).length() != 1) {
@@ -111,7 +111,7 @@ public class Task4 {
         }
         return (n);
     }
-    public static String toStarShorthand(String a) {
+    public static String toStarShorthand(String a) { //символ повторяется n раз => *n
         String new_a = "";
         for (int i=0; i<a.length(); i++) {
             int n = 1;
@@ -126,7 +126,7 @@ public class Task4 {
         }
         return (new_a);
     }
-    public static boolean doesRhyme(String a, String b) {
+    public static boolean doesRhyme(String a, String b) { //проверка на рифму
         String a1 = a.toLowerCase();
         String b1 = b.toLowerCase();
         String new_a = "";
@@ -147,7 +147,7 @@ public class Task4 {
         }
         return new_a.equals(new_b);
     }
-    public static boolean trouble(long num1, long num2) {
+    public static boolean trouble(long num1, long num2) { //если число из num1 повторяется в любом месте num2 3 раза
         String n1 = String.valueOf(num1);
         String n2 = String.valueOf(num2);
         char h = 'n';
@@ -165,7 +165,7 @@ public class Task4 {
         }
         return false;
     }
-    public static int countUniqueBooks(String books, char bookend) {
+    public static int countUniqueBooks(String books, char bookend) { //общее кол-во уникальных символов между всеми парами bookend
         Set<Character> res = new HashSet<>();
         boolean between = false;
         for (char i:books.toCharArray()) {
