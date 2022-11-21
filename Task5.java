@@ -33,12 +33,12 @@ public class Task5 {
     }
     public static String decrypt(int[] s) { //декодированное сообщение (код - массив)
         char lAscii = 0;
-        String symbols = "";
+        StringBuilder symbols = new StringBuilder();
         for (int i = 0; i < s.length; i++) {
-            symbols += (char) (lAscii + s[i]);
+            symbols.append((char)(lAscii + s[i]));
             lAscii = symbols.charAt(i);
         }
-        return symbols;
+        return symbols.toString();
     }
     public static boolean canMove(String figure, String from, String to) { //проверка хода шахматной фигуры из её положения в целевую позицию
         if (figure.equals("Pawn")) { //пешка
@@ -79,7 +79,7 @@ public class Task5 {
         return false;
     }
     
-    public static boolean canComplete(String a, String b) { //проверка, может ли слово а превратить в b
+    public static boolean canComplete(String a, String b) { //проверка, может ли слово а превратиться в b
         int n = 0;
         for (int i=0; i<b.length(); i++) {
             if (a.charAt(n) == b.charAt(i)) n++;
@@ -150,28 +150,28 @@ public class Task5 {
         switch (strNum.length()) {
             case 1: //для чисел 0-9
                 return ones[num];
-            case 2: //для числе 10-99
+            case 2: //для чисел 10-99
                 if (num >= 10 && num <= 19) return tens1[num - 10];
                 else return tens2[num/10 - 1] + " " + ones[num%10];
-            case 3: //для числе 100-999
-                String res = ones[num/100] + " hundred ";
+            case 3: //для чисел 100-999
+                StringBuilder res = new StringBuilder(ones[num/100] + " hundred ");
                 strNum = strNum.substring(1);
                 if (strNum.charAt(0) == '0') {
                     strNum = strNum.substring(1);
-                    res += ones[Integer.parseInt(strNum)%10];
+                    res.append(ones[Integer.parseInt(strNum)%10]);
                 }
                 else {
-                    if (Integer.parseInt(strNum) >= 10 && Integer.parseInt(strNum) <= 19) res += tens1[Integer.parseInt(strNum) - 10];
-                    else res += tens2[Integer.parseInt(strNum)/10 - 1] + " " + ones[Integer.parseInt(strNum)%10];
+                    if (Integer.parseInt(strNum) >= 10 && Integer.parseInt(strNum) <= 19) res.append(tens1[Integer.parseInt(strNum) - 10]);
+                    else res.append(tens2[Integer.parseInt(strNum)/10 - 1] + " " + ones[Integer.parseInt(strNum)%10]);
                 }
-                return res;
+                return res.toString();
             default:
                 break;
         }
         return "";
     }
     public static String getSha256Hash(String str) { //хеш SHA-256 для данной строки
-        String res = "";
+        StringBuilder res = new StringBuilder();
         try {
             //шифр байтов в строку
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -179,23 +179,23 @@ public class Task5 {
             //перевод их в хеш
             for (int i = 0; i < hash.length; i++){
                 String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1) res += 0;
-                res += hex;
+                if (hex.length() == 1) res.append(0);
+                res.append(hex);
             }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return res;
+        return res.toString();
     }
     public static String correctTitle(String str) { //все слова с большой буквы, кроме служебных
         String s = str.toLowerCase();
         String[] words = s.split(" ");
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (String word: words) {
             if (!word.equals("of") && !word.equals("in") && !word.equals("and") && !word.equals("the"))
-                res += word.substring(0,1).toUpperCase() + word.substring(1) + " ";   
+                res.append(word.substring(0,1).toUpperCase() + word.substring(1) + " ");   
         }
-        return res;
+        return res.toString();
     }
     public static String hexLattice(int n) { //вывод на экран гексагональной решетки для центрированного шестиугольного числа
         int i = 0; //номер центрированного числа по порядку (0,1,2...)
@@ -204,27 +204,25 @@ public class Task5 {
             if (3*i*(i+1)+1 == n) isHexNum = true;
             i++;
         }
-        String res = "";
+        StringBuilder res = new StringBuilder();
         if (isHexNum){
             int l = i; //для 'o'
             int m = i; //для пробелов
-            String space;
             for (int j = 0; j < 2*i-1; j++){
-                res += "\n";
-                space = "";
+                res.append("\n");
+                StringBuilder space = new StringBuilder("");
                 for (int k = 1; k < m; k++){
-                    space +=  " ";
+                    space.append(" ");
                 }
-                res += space;
+                res.append(space);
                 for (int k = 0; k < l; k++){
-                    res +=  " o";
+                    res.append(" o");
                 }
-                res += space + " ";
+                res.append(space + " ");
                 l += (j < i-1) ? 1 : -1;
                 m += (j < i-1) ? -1 : 1;
-            }
-            res = res.replaceFirst("\n", "");
-            return res;
+            } 
+            return res.toString().replaceFirst("\n", "");
         } else return "Invalid";
     }
 }
