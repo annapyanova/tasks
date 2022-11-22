@@ -22,13 +22,13 @@ public class Task4 {
     }
     public static void essay(int n, int k, String a) { //текстовый процессор
         String[] strings = a.split(" "); //массив подстрок
-        StringBuilder str_cur = new StringBuilder(" "); //текущая подстрока на строке
+        StringBuilder str_cur = new StringBuilder(); //текущая подстрока на строке
         for (String string : strings) {
             if (string.length() + str_cur.length() > k) {
                 System.out.println(str_cur);
-                str_cur = new StringBuilder(" ");
+                str_cur = new StringBuilder();
             }
-            str_cur.append(string);
+            str_cur.append(string + " ");
         }
         if (str_cur.length() != 0) {
             System.out.println(str_cur);
